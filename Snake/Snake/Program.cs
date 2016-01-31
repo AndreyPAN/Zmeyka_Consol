@@ -23,6 +23,11 @@ namespace Snake
 			vertLeft.Draw();
 			vertRight.Draw();
 
+			Point p = new Point(4,5,'*');
+			Snake snake = new Snake(p, 4, Direction.Right);
+			snake.Draw();
+
+
 
 			Console.ReadKey();
 		}
