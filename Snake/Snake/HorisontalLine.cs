@@ -6,27 +6,19 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-	class HorisontalLine
+	class HorisontalLine:Figure
 	{
-		List<Point> pHor;
 		public HorisontalLine(int xLeft, int xRight, int y, char symb)
 		{
-			pHor = new List<Point>();
+			pList = new List<Point>();
 			for (int i = xLeft; i <= xRight; i++)
 			{
 				Point p = new Point(i, y, symb);
-				pHor.Add(p);
+				pList.Add(p);
 			}
 
 		}
 
-		public void DrowHor ()
-		{
-			foreach (Point item in pHor)
-			{
-				item.Draw();
-			}
-		}
 
 	}
 }

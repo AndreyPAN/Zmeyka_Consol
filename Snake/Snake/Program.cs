@@ -11,10 +11,17 @@ namespace Snake
 		static void Main(string[] args)
 		{
 
-			HorisontalLine lineh = new HorisontalLine(5, 13, 8, '*');
-			VerticalLine linev = new VerticalLine(0, 8, 5, '+');
-			lineh.DrowHor();
-			linev.DrawVert();
+			Console.SetBufferSize(80, 25);
+
+			HorisontalLine horTop = new HorisontalLine(0, 78, 0, '+');
+			HorisontalLine horDown = new HorisontalLine(0, 78, 24, '+');
+
+			VerticalLine vertLeft = new VerticalLine(0, 24, 0, '+');
+			VerticalLine vertRight = new VerticalLine(0, 24, 78, '+');
+			horTop.Draw();
+			horDown.Draw();
+			vertLeft.Draw();
+			vertRight.Draw();
 
 
 			Console.ReadKey();
