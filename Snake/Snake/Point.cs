@@ -57,6 +57,12 @@ namespace Snake
 
 		}
 
+		public void Clear ()
+		{
+			symb = ' ';
+			Draw();
+		}
+
 		public override string ToString()
 		{
 			return x+ ", "+y+ ", "+ symb;
