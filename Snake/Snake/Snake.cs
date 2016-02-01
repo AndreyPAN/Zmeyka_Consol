@@ -67,5 +67,20 @@ namespace Snake
 
 
 		}
+
+		internal bool Eat (Point food)
+		{
+			Point head = GetNextPoint();
+			if (head.IsHit(food))
+			{
+				food.symb = head.symb;
+				food.Draw();
+				pList.Add(food);
+				return true;
+			}
+			else
+				return false;
+
+		}
 	}
 }

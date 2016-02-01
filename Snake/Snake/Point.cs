@@ -10,7 +10,7 @@ namespace Snake
 	{
 		int x;
 		int y;
-		char symb;
+		 public char symb;
 
 		public Point(int x, int y, char symb)
 		{
@@ -61,6 +61,11 @@ namespace Snake
 		{
 			symb = ' ';
 			Draw();
+		}
+
+		public bool IsHit (Point p)
+		{
+		return 	p.x == this.x && p.y == this.y;
 		}
 
 		public override string ToString()
