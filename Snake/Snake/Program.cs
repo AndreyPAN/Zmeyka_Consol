@@ -5,30 +5,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Snake
+namespace Snake 
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
 
-			Console.SetBufferSize(80, 25);
 
-			HorisontalLine horTop = new HorisontalLine(0, 78, 0, '+');
-			HorisontalLine horDown = new HorisontalLine(0, 78, 24, '+');
+			Console.SetBufferSize (80, 25);
 
-			VerticalLine vertLeft = new VerticalLine(0, 24, 0, '+');
-			VerticalLine vertRight = new VerticalLine(0, 24, 78, '+');
-			horTop.Draw();
-			horDown.Draw();
-			vertLeft.Draw();
-			vertRight.Draw();
+			Walls walls = new Walls(80, 25);
+
+			walls.Draw();
+
 
 			Point p = new Point(4, 5, '*');
 			Snake snake = new Snake(p, 4, Direction.Right);
 			snake.Draw();
 
-			FoodCreator foodObj = new FoodCreator(79, 25, '$');
+			FoodCreator foodObj = new FoodCreator(79, 24, '$');
 
 			Point food = foodObj.CreateFood();
 			food.Draw();
@@ -36,6 +32,10 @@ namespace Snake
 
 			while (true)
 			{
+
+				if (walls.IsHit(snake) || snake.IsHitSnake(snake))
+					break;
+
 				if (snake.Eat(food))
 				{
 					food = foodObj.CreateFood();
@@ -55,7 +55,9 @@ namespace Snake
 
 			}
 
-
+			Console.Clear();
+			Console.SetCursorPosition(10, 10);
+			Console.Write("Длина змейки {0}", snake.pList.Count);
 			Console.ReadKey();
 		}
 

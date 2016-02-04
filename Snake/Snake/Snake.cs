@@ -46,6 +46,7 @@ namespace Snake
 			return next;
 		}
 
+
 		public void DirectSnake (ConsoleKeyInfo key)
 		{
 			if (key.Key == ConsoleKey.LeftArrow)
@@ -82,5 +83,19 @@ namespace Snake
 				return false;
 
 		}
+
+		internal bool IsHitSnake(Snake snake)
+		{
+			Point nextHead = GetNextPoint();
+			foreach (Point p in pList)
+			{
+				if (nextHead.IsHit(p))
+					return true;
+			}
+			return false;
+
+		}
+
+
 	}
 }
