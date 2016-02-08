@@ -68,9 +68,9 @@ namespace Snake
 		return 	p.x == this.x && p.y == this.y;
 		}
 
-		public override string ToString()
-		{
-			return x+ ", "+y+ ", "+ symb;
-		}
+		//public override string ToString()
+		//{
+		//	return x+ ", "+y+ ", "+ symb;
+		//}
 	}
 }

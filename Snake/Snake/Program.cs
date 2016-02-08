@@ -25,9 +25,14 @@ namespace Snake
 			Snake snake = new Snake(p, 4, Direction.Right);
 			snake.Draw();
 
-			FoodCreator foodObj = new FoodCreator(79, 24, '$');
+			FoodCreator foodObj = new FoodCreator(80, 25 , '$');
 
 			Point food = foodObj.CreateFood();
+			while (snake.IsAppearanceFoodInSnake(food))
+			{
+				food = foodObj.CreateFood();
+			}
+
 			food.Draw();
 			Console.Beep(250, 300);
 
@@ -55,10 +60,14 @@ namespace Snake
 				if (snake.Eat(food))
 				{
 					food = foodObj.CreateFood();
-					food.Draw();
-					Console.Beep(250, 50);
+					while (snake.IsAppearanceFoodInSnake(food))
+					{
+						food = foodObj.CreateFood();
+					}
 
-					if (snake.pList.Count>=50)
+					food.Draw();
+
+					if (snake.pList.Count>=8)
 					{
 						level++;
 						if (level >= 4)

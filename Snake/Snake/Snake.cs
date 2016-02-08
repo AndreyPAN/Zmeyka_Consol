@@ -23,6 +23,10 @@ namespace Snake
 
 		internal void NewLevel()
 		{
+			for (int i = 4; i < pList.Count; i++)
+			{
+			pList[i].Clear();
+			}
 			pList.RemoveRange(4, pList.Count - 4);
 
 		}
@@ -35,8 +39,10 @@ namespace Snake
 			Point head = GetNextPoint();
 			pList.Add(head);
 			tail.Clear();
-
+			Console.ForegroundColor = ConsoleColor.Green;
 			head.Draw();
+			Console.ForegroundColor = ConsoleColor.White;
+
 
 		}
 
@@ -79,7 +85,9 @@ namespace Snake
 			if (head.IsHit(food))
 			{
 				food.symb = head.symb;
+				Console.ForegroundColor = ConsoleColor.Green;
 				food.Draw();
+				Console.ForegroundColor = ConsoleColor.White;
 				pList.Add(food);
 				return true;
 			}
@@ -99,6 +107,27 @@ namespace Snake
 			return false;
 
 		}
+
+		internal bool IsAppearanceFoodInSnake (Point food)
+		{
+			foreach (Point p in pList)
+			{
+				if (p.IsHit(food))
+					return true;
+			}
+			return false;
+		}
+
+		public void Draw()
+		{
+			Console.ForegroundColor = ConsoleColor.Green;
+
+			base.Draw();
+
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+
+
 
 
 	}
