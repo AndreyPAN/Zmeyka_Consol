@@ -8,7 +8,7 @@ namespace Snake
 {
 	class Snake : Figure
 	{
-		  Direction direction;
+		Direction direction;
 		public Snake(Point tail, int length, Direction direct)
 		{
 			this.direction = direct;
@@ -21,7 +21,11 @@ namespace Snake
 			}
 		}
 
+		internal void NewLevel()
+		{
+			pList.RemoveRange(4, pList.Count - 4);
 
+		}
 
 		internal void Move()
 		{
@@ -47,7 +51,7 @@ namespace Snake
 		}
 
 
-		public void DirectSnake (ConsoleKeyInfo key)
+		public void DirectSnake(ConsoleKeyInfo key)
 		{
 			if (key.Key == ConsoleKey.LeftArrow)
 			{
@@ -69,7 +73,7 @@ namespace Snake
 
 		}
 
-		internal bool Eat (Point food)
+		internal bool Eat(Point food)
 		{
 			Point head = GetNextPoint();
 			if (head.IsHit(food))

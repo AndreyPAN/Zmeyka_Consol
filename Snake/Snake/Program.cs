@@ -11,7 +11,8 @@ namespace Snake
 	{
 		static void Main(string[] args)
 		{
-
+			int level = 1;
+			int sleep = 150;
 
 			Console.SetBufferSize (80, 25);
 
@@ -28,24 +29,63 @@ namespace Snake
 
 			Point food = foodObj.CreateFood();
 			food.Draw();
+			Console.Beep(250, 300);
+
+
 
 
 			while (true)
 			{
+				Console.Title = "Уровень:" + level+"  Длина змейки: " + snake.pList.Count + "!!";
 
 				if (walls.IsHit(snake) || snake.IsHitSnake(snake))
+				{
+					Console.Beep(350, 1000);
+					Console.Clear();
+					Console.SetCursorPosition(10, 10);
+					Console.Write(" Вы проиграли \n Уровень {0} \n Длина змейки {1}", level, snake.pList.Count);
+
+					Thread.Sleep(3000);
+
+
 					break;
+				}
+
 
 				if (snake.Eat(food))
 				{
 					food = foodObj.CreateFood();
 					food.Draw();
+					Console.Beep(250, 50);
+
+					if (snake.pList.Count>=50)
+					{
+						level++;
+						if (level >= 4)
+						{
+							Console.Beep(550, 1000);
+							Console.Clear();
+							Console.SetCursorPosition(10, 10);
+							Console.Write(" Поздравляем Вы выиграли !!!!!!!!!");
+
+							Thread.Sleep(3000);
+
+
+							break;
+
+						}
+						else
+						{
+							snake.NewLevel();
+							sleep -= 40;
+						}
+					}
 
 				}
 				else
 					snake.Move();
 
-				Thread.Sleep(200);
+				Thread.Sleep(sleep);
 				if (Console.KeyAvailable)
 				{
 					ConsoleKeyInfo key = Console.ReadKey();
@@ -55,9 +95,6 @@ namespace Snake
 
 			}
 
-			Console.Clear();
-			Console.SetCursorPosition(10, 10);
-			Console.Write("Длина змейки {0}", snake.pList.Count);
 			Console.ReadKey();
 		}
 
