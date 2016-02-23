@@ -67,7 +67,7 @@ namespace Snake
 
 					food.Draw();
 
-					if (snake.pList.Count>=8)
+					if (snake.pList.Count>=35)
 					{
 						level++;
 						if (level >= 4)
